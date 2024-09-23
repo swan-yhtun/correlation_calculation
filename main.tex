@@ -106,7 +106,7 @@ With this parametrization, \(\mu\) represents the mean intensity, while the shap
 %Note that the \(\mu\) parameter ultimately captures the mean photon density per pixel per frame of a diffraction pattern.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=70mm]{gamma_pdf.png}
+    \includegraphics[width=70mm]{figures/gamma_pdf.png}
     \captionsetup{font={small}, justification=centering}
     \caption{Gamma PDF with the same mean and different shape parameter \(k = 1\) and \(k = 5\) denoted by purple and green respectively.}
     \label{fig:gamma_pdf}
@@ -140,7 +140,7 @@ f_Z(z \,;\; \mu, k, L) = \frac{1}{\Gamma(k)\Gamma(L)}\frac{2kL}{\mu}\left(\frac{
 where $K$ is the Bessel function of the second kind.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=120mm]{speckl_noPoi_newlegend.png}
+    \includegraphics[width=120mm]{figures/speckl_noPoi_newlegend.png}
     \captionsetup{font={small}, justification=centering}
     \caption{Generated speckle time series of a single pixel with \(\mu = 10^{-2}\) mean photon count without Poisson counting statistics. Top: Intensity observed at the detector, RV \(Z\) (red) and input intensity RV \(X\) modulated by \(\mu\) (blue). Bottom: Ratio of recorded intensity pattern RV \(Z\) normalized by the mean of each frame (red) and the RV \(X\) (blue).}
     \label{fig:speckle_noPoi}
@@ -157,7 +157,7 @@ W \,|\, Z   \, \sim \, \mathcal{P}(\lambda = z).
 %
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=120mm]{speckle_poi_newlegend.png}
+    \includegraphics[width=120mm]{figures/speckle_poi_newlegend.png}
     \captionsetup{font={small}, justification=centering}
     \caption{Generated speckle time series of a single pixel with \(\mu = 10^{-2}\) mean photon count with Poisson counting statistics. Top: Intensity observed at the detector, \(W\) (red) and input intensity \(X\) modulated by \(\mu\) (blue). Bottom: Ratio of recorded intensity pattern \(W\) normalized by the mean of each frame (red) and the RV \(X\) (blue).}
     \label{fig:speckle_Poi}
