@@ -47,6 +47,8 @@
 \newcommand{\DD}{\textbf{D}}
 \newcommand{\PP}{\textbf{P}}
 \newcommand{\RR}{\textbf{R}}
+\newcommand{\QQ}{\textbf{Q}}
+\newcommand{\kk}{\langle k \rangle}
 
 
 \begin{document}
@@ -67,6 +69,62 @@
 %\dedicatory{}%
 % ----------------------------------------------------------------
 \newpage
+\section{X-rays Speckle Visibility Spectroscopy (XSVS)}
+\subsection{What is speckle contrast/ visibility}
+\label{subsec:speckle}
+Speckle contrast, denoted as $\beta$, is a measure of the intensity variations in a speckle pattern, where bright spots result from constructive interference and dark spots from destructive interference of scattered X-rays. It depends on the coherence properties of the X-ray beam and the experimental configurations \cite{hruszkewycz_high_2012}. Speckle contrast is typically computed as the normalized variance of the intensity signal distribution at the detector given by $\beta = \sigma_I/\langle I \rangle$ \cite{hruszkewycz_high_2012}. Since speckle contrast reflects the extent to which the scattered waves interfere, it can also be expressed as the ratio of the difference between the maximum and minimum intensities to their sum, i.e., \(\beta = (I_{\text{max}} - I_{\text{min}})/( I_{\text{max}} + I_{\text{min}})\). Thus, the maximum achievable contrast is 1, occurring when the waves interfere perfectly constructively and destructively, creating sharp intensity variations. On the other hand, a contrast of 0 would imply no interference patterns, with uniformly distributed intensities. 
+
+Several factors can reduce speckle contrast: if the coherence length of the incident beam is less than the illuminated volume of the sample, if the detector pixels are too large to resolve the speckle, or if the sample rearranges over the timescale during which the pattern is recorded \cite{hruszkewycz_high_2012}. 
+
+A speckle pattern arises in the far-field from the interference between the wavefronts scattered from heterogeneities in the materials due to varying phase shifts being introduced into the scattering of coherent incident light. Speckle size \(s\) is dictated by the X-ray wavelength \(\lambda\), sample-to-detector distance \(D\) and illuminated area size \(d\) via the relationship \(s = \lambda D/d \). 
+
+The evolution of the system can be captured by taking a time series of speckle patterns and quantifying the changes in speckles from frame to frame to study dynamics of materials from the rearrangements of speckle patterns. Speckle contrast captures the changes in the system that occurs within the data collection period of a single frame by utilizing the photon statistical properties of the detected photons in a X-ray scattering experiment. 
+
+\subsection{Contrast in low-photon count limit}
+\subsubsection{Negative Binomial analysis}
+The fluctuations in the intensity distribution of a coherent beam is well approximated by gamma density function, and discrete photon counts on the detector follows a Poisson distribution \cite{goodman_speckle_2020}. Thus, the probability distribution of photons arriving in a single detector pixel k of a speckle pattern follows negative binomial (NB) distribution Eq. \ref{eqn:NB}, which is the convolution of gamma distribution with Poisson distribution \cite{goodman_speckle_2020}. The mean photon count (per pixel per pulse) is $\kk$, and the number of coherence modes in the speckle pattern is \( M \), where \(M \equiv \beta^{-1} \) \cite{hruszkewycz_high_2012}. It quantifies the degree of decoherence, which is influenced by the coherence length of the incident beam, detector pixel size, and sample dynamics. Speckle contrast is maximum at unity for single-mode distribution and decreases as M $\rightarrow \infty$ \cite{hruszkewycz_high_2012}. 
+\begin{align}\label{eqn:NB}
+P_{NB}(k) = \frac{\Gamma(k+M)}{\Gamma(M)\Gamma(k+1)} \left(\frac{\kk}{\kk+M}\right)^k \left(\frac{M}{\kk +M}\right)^M
+\end{align}
+Normalized variance of NB is the sum of gamma and Poisson distributions, given by Eq. \ref{eqn:NB_var}. The second term becomes significant at low count rates when $\langle k \rangle \ll$ 1, so tracking contrast using variance can be inaccurate. 
+\begin{align}\label{eqn:NB_var}
+M^{-1} = \frac{\sigma^2(k)}{\kk^2} - \frac{1}{\kk}
+\end{align}
+Instead, we can directly extract speckle contrast from the observed P(k) through the probability to detect 0, 1 or 2 photon events via Taylor series expansion for P(1) and P(2) \cite{hruszkewycz_high_2012}. Similarly, fitting the observed photon probabilities to Eq. \ref{eqn:NB} can determine \( M \) and thus, speckle contrast.
+\subsubsection{Extension of NB analysis}
+
+\section{XPCS}
+\label{sec:XPCS}
+\subsection{X-ray Photon Correlation Spectroscopy (XPCS)}
+\label{subsec:xpcs}
+XPCS is a statistical technique that utilizes the rearrangement of speckle to study materials dynamics as noted in Subsection \ref{subsec:speckle}. It quantifies these dynamics by correlating frame-to-frame speckle intensity variations over different time intervals (Eq. \ref{eqn:TTCF}) since distinctive speckle pattern arises when coherent X-rays scatters off a particular atomic arrangement within a sample \cite{jo_single_2023}. 
+
+One analysis approach involves the two-time correlation function (TTCF). TTCF is an anti-symmetric 2D matrix by construction \cite{cao_effect_2020} and represents the cross-correlation of the intensity fluctuations separated by a certain time delay between all possible pairs of pulses (frames) (Fig. \ref{fig:xpcs_example}b). Rearrangement of speckle is reflected in the intensity fluctuations of the pixels at each frame. Thus, TTCF gives insight into how the system has evolved over the duration of the probe by keeping track of the speckle changes in each pixel over different frames. By performing the anti-diagonal sum of TTCF, which is the time-averaging over the similar time delays, correlation coefficients spanning various time delays is computed (Fig. \ref{fig:xpcs_example}c). This 1D correlation function, called \(g_2\) Eq. \ref{eqn:g2}, tells us the timescale of the system's decorrelation under a certain experimental condition. 
+\begin{subequations}\label{eqn:TTCF_g2}
+\begin{align}
+\label{eqn:TTCF}
+TTCF(Q, t_1, t_2) &= \frac{\left<I_{t_1} I_{t_2}\right>}{\left<I_{t_1}\right> \left<I_{t_2}\right>} \\
+\label{eqn:g2}
+g_2(Q, t_1, t_2) &= \frac{\overline{\left<{I}_{t_1} {I}_{t_2}\right>}}{\overline{\left<{I}_{t_1}\right>} \overline{\left<{I}_{t_2}\right>}} \\
+&= 1 + \beta |f(Q, \Delta t)|^2
+\end{align}
+\end{subequations}
+The $\left<.\right>$ denotes ensemble averaging of the pixels' intensities at an equivalent momentum transfer wave vector Q ($|\QQ| = \frac{4 \pi}{\lambda} \sin(\frac{\theta}{2}))$ for a chosen region of interest from speckle patterns, and the bar denotes the time averaging. The X-ray wavelength is $\lambda$, and the scattering angle is $\theta$. $\beta$ is the speckle contrast and $f(Q, \Delta t)$ is the intermediate scattering function, which contains information about the dynamics of the sample \cite{jo_single_2023}. For a simple mono-disperse colloidal systems that follow Brownian motion, this can be captured using an exponential decay function via the Stokes-Einstein relation \cite{jo_single_2023}.
+
+In XPCS method, the repetition rate of the detector dictates the time resolution of the dynamical processes that can be captured \cite{jo_single_2023} while the duration of the X-ray pulse determines the timescale of the frozen snap shot that can be taken at each instance.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=165mm]{figures/xpcs_fig.001.jpeg}
+    \captionsetup{font={small}, justification=centering}
+    \caption{a) XPCS scheme in small-angle X-ray scattering geometry. b) Example 2D TTCF cross-correlation heat map between pairs of frames denoted $t_1$ (x-axis) and $t_2$ (y-axis). The black lines denoted with \(t_2 = 1, 21, 41\) and so on indicate one of the time pairs held constant as you go across horizontally on the TTCF heat map. (Figure a) \& b) from \cite{lehmkuhler_femtoseconds_2021}). c) Example \(g_2\) correlation function plot}
+    \label{fig:xpcs_example}
+\end{figure}
+\subsubsection{Weighted TTCF}
+One way to handle extreme fluctuations in recorded speckle intensities is by applying the similar weighting matrix via the equation \eqref{eqn:weightM} \cite{cao_effect_2020}. By applying this weighting matrix in computation of the TTCF, extremely weak shots will not contribute in calculating the correlation coefficient since $ w_{t_1}$ approaches 0 as $\left<I_{t_1}\right>$ approaches 0. Doing so will also help eliminate false correlations resulting from correlations between two extremely disproportionate pulses resulting from intensity fluctuations from X-ray sources. Thus, this weighted TTCF function discard pairs of pulses that are extremely weak or extremely strong and weak, consequently reducing the number of contributing pulses, in computation of the correlation coefficients.
+\begin{align}\label{eqn:weightM}
+w_{t_1, t_2} = \frac{n_{pix} \left<I_{t_1}\right> \left<I_{t_2}\right>}{\left<I_{t_1}\right> + \left<I_{t_2}\right> + 1}
+\end{align}
+
 \section{Variance of a Gamma/Gamma/Poisson random variable}
 This section describes the underlying statistical model used to simulate an X-ray scattering experiment at a X-ray free electron laser (XFEL) source. 
 
