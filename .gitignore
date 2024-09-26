@@ -6,7 +6,6 @@
 *.bbl
 *.blg
 *.dvi
-*.pdf
 .DS_Store
 main.pdf
 
