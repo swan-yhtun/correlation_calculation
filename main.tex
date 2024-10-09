@@ -141,11 +141,10 @@ w_{t_1, t_2} = \frac{n_{pix} \left<I_{t_1}\right> \left<I_{t_2}\right>}{\left<I_
 As we will be focusing mainly on wide-angle scattering and choosing a region of interest (ROI) where there is no dependence on the scattering vector \QQ, the following equations will be written without the \QQ~ dependence. 
 \begin{align}
 g_1(t_1, t_2) &= \frac{\left< E^*_{t_1} E_{t_2} \right>}{\left< E^*_{t_1} E_{t_1} \right>} \\
-g_2(t_1, t_2) &= 1 + |g_1(t_1, t_2)|^2 \label{eqn:g2_field} \\
-&= 1 + \beta_0 |g_1(t_1, t_2)|^2 \label{eqn:g2_siegert}\\
+g_2(t_1, t_2)&= 1 + \beta_0 |g_1(t_1, t_2)|^2 \label{eqn:g2_siegert}\\
 &= \frac{\overline{\left< I_{t_1} I_{t_2} \right>}}{\overline{\left< I_{t_1} \right>} \overline{\left< I_{t_2} \right>}} \label{eqn:g2_intensity} 
 \end{align}
-Intensity fluctuations in speckle patterns arise from the microscopic spatial rearrangement of particles within the scattering volume. These fluctuations can be characterized through the temporal intensity autocorrelation function, \( g_2(t_1, t_2) \), which quantifies the temporal correlations between speckle patterns at different times. The Siegert relation, Eq. \eqref{eqn:g2_siegert}, \eqref{eqn:g2_field} \cite{ferreira2020, jo_single_2023}, links the intensity autocorrelation, \( g_2(t_1, t_2) \), to the temporal field correlation function, i.e., intensity correlation of the electric field of the scattered light, and relates the contrast parameter, \(\beta_0\), and \( g_2 \). 
+Intensity fluctuations in speckle patterns arise from the microscopic spatial rearrangement of particles within the scattering volume. These fluctuations can be characterized through the temporal intensity autocorrelation function, \( g_2(t_1, t_2) \), which quantifies the temporal correlations between speckle patterns at different times. The Siegert relation, Eq. \eqref{eqn:g2_siegert}, \cite{ferreira2020, jo_single_2023}, links the intensity autocorrelation, \( g_2(t_1, t_2) \), to the temporal field correlation function, i.e., intensity correlation of the electric field of the scattered light, and relates the contrast parameter, \(\beta_0\), and \( g_2 \). 
 
 The contrast parameter \(\beta_0\) is extracted from the statistical analysis of photons detected within a single speckle pattern. It describes the degree of speckle contrast, capturing instantaneous variation in intensity occurring within a single frame due to interference effects. On the other hand, the correlation coefficient \( g_2(\Delta t) \) measures the degree of similarity between intensities in different frames, thereby probing the dynamics of the system over time.
 
