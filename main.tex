@@ -69,17 +69,21 @@
 %\dedicatory{}%
 % ----------------------------------------------------------------
 \newpage
-\section{X-rays Speckle Visibility Spectroscopy (XSVS)}
-\subsection{What is speckle contrast/ visibility}
-\label{subsec:speckle}
-A speckle pattern arises in the far-field from the interference between the wavefronts scattered from heterogeneities in the materials due to varying phase shifts being introduced into the scattering of coherent incident light. Speckle size \(s\) is dictated by the X-ray wavelength \(\lambda\), sample-to-detector distance \(D\) and illuminated area size \(d\) via the relationship \(s = \lambda D/d \).  
-
-Speckle contrast, denoted as $\beta$, is a measure of the intensity variations in a speckle pattern, where bright spots result from constructive interference and dark spots from destructive interference of scattered X-rays. It depends on the coherence properties of the X-ray beam and the experimental configurations \cite{hruszkewycz_high_2012}. 
-Speckle contrast is typically computed as the normalized variance of the intensity signal distribution at the detector given by $\beta = \sigma_I/\langle I \rangle$ \cite{hruszkewycz_high_2012}. Since speckle contrast reflects the extent to which the scattered waves interfere, it can also be expressed as the ratio of the difference between the maximum and minimum intensities to their sum, i.e., \(\beta = (I_{\text{max}} - I_{\text{min}})/( I_{\text{max}} + I_{\text{min}})\). Thus, the maximum achievable contrast is 1, occurring when the waves interfere both perfectly constructively and destructively, creating sharp intensity variations. On the other hand, a contrast of 0 would imply that the interference is not coherent enough to form visible speckles, resulting in uniformly distributed intensities.
-
-Several factors can reduce speckle contrast: if the coherence length of the incident beam is less than the illuminated volume of the sample, if the detector pixels are too large to resolve the speckle, or if the sample rearranges over the timescale during which the pattern is recorded \cite{hruszkewycz_high_2012}. 
+\section{Accessing material dynamics through X-ray speckle}
+A speckle pattern arises in the far-field from the interference between the wavefronts scattered from heterogeneities in the materials due to varying phase shifts being introduced into the scattering of coherent incident light. Speckle size \(s\) is dictated by the X-ray wavelength \(\lambda\), sample-to-detector distance \(D\) and illuminated area size \(d\) via the relationship \(s = \lambda D/d \). 
 
 The evolution of the system can be captured by taking a time series of speckle patterns and quantifying the changes in speckles from frame to frame to study dynamics of materials from the rearrangements of speckle patterns. Speckle contrast captures the changes in the system that occurs within the data collection period of a single frame by utilizing the photon statistical properties of the detected photons in a X-ray scattering experiment. 
+
+\subsection{Different coherent X-ray sources}
+\subsubsection{XFEL: Fast and short pulses with stochastic beam intensities}
+\subsubsection{Synchrotron: Less time resolution with steady beam intensities}
+
+\section{X-ray Speckle Visibility Spectroscopy (XSVS)}
+\subsection{What is speckle contrast/ visibility}
+\label{subsec:speckle}
+Speckle contrast, denoted as $\beta$, is a measure of the intensity variations in a speckle pattern, where bright spots result from constructive interference and dark spots from destructive interference of scattered X-rays. It depends on the coherence properties of the X-ray beam and the experimental configurations \cite{hruszkewycz_high_2012}. Speckle contrast is typically computed as the normalized variance of the intensity signal distribution at the detector given by $\beta = \sigma_I/\langle I \rangle$ \cite{hruszkewycz_high_2012}. Since speckle contrast reflects the extent to which the scattered waves interfere, it can also be expressed as the ratio of the difference between the maximum and minimum intensities to their sum, i.e., \(\beta = (I_{\text{max}} - I_{\text{min}})/( I_{\text{max}} + I_{\text{min}})\). Thus, the maximum achievable contrast is 1, occurring when the waves interfere perfectly constructively and destructively, creating sharp intensity variations. On the other hand, a contrast of 0 would imply no interference patterns, with uniformly distributed intensities. 
+
+Several factors can reduce speckle contrast: if the coherence length of the incident beam is less than the illuminated volume of the sample, if the detector pixels are too large to resolve the speckle, or if the sample rearranges over the timescale during which the pattern is recorded \cite{hruszkewycz_high_2012}. 
 
 \subsection{Contrast in low-photon count limit}
 \subsubsection{Negative Binomial analysis}
@@ -92,11 +96,14 @@ Normalized variance of NB is the sum of gamma and Poisson distributions, given b
 M^{-1} = \frac{\sigma^2(k)}{\kk^2} - \frac{1}{\kk}
 \end{align}
 Instead, we can directly extract speckle contrast from the observed P(k) through the probability to detect 0, 1 or 2 photon events via Taylor series expansion for P(1) and P(2) \cite{hruszkewycz_high_2012}. Similarly, fitting the observed photon probabilities to Eq. \ref{eqn:NB} can determine \( M \) and thus, speckle contrast.
-\subsubsection{Extension of NB analysis}
+\subsubsection{Extension of NB analysis: Taylor expansion of P(k) to estimate contrast quickly}
 
-\section{XPCS}
+\subsubsection{Contrast determination with NB at a fluctuating source}
+Similarly, fitting the observed photon probabilities to Eq. \ref{eqn:NB} can determine \( M \) and thus, speckle contrast.
+
+\section{X-ray Photon Correlation Spectroscopy (XPCS)}
 \label{sec:XPCS}
-\subsection{X-ray Photon Correlation Spectroscopy (XPCS)}
+\subsection{Deriving XPCS from physics perspective}
 \label{subsec:xpcs}
 XPCS is a statistical technique that utilizes the rearrangement of speckle to study materials dynamics as noted in Subsection \ref{subsec:speckle}. It quantifies these dynamics by correlating frame-to-frame speckle intensity variations over different time intervals (Eq. \ref{eqn:TTCF}) since distinctive speckle pattern arises when coherent X-rays scatters off a particular atomic arrangement within a sample \cite{jo_single_2023}. 
 
@@ -120,13 +127,36 @@ In XPCS method, the repetition rate of the detector dictates the time resolution
     \caption{a) XPCS scheme in small-angle X-ray scattering geometry. b) Example 2D TTCF cross-correlation heat map between pairs of frames denoted $t_1$ (x-axis) and $t_2$ (y-axis). The black lines denoted with \(t_2 = 1, 21, 41\) and so on indicate one of the time pairs held constant as you go across horizontally on the TTCF heat map. (Figure a) \& b) from \cite{lehmkuhler_femtoseconds_2021}). c) Example \(g_2\) correlation function plot}
     \label{fig:xpcs_example}
 \end{figure}
-\subsubsection{Weighted TTCF}
+\subsubsection{Weighted TTCF: Accounting for source fluctuations}
 One way to handle extreme fluctuations in recorded speckle intensities is by applying the similar weighting matrix via the equation \eqref{eqn:weightM} \cite{cao_effect_2020}. By applying this weighting matrix in computation of the TTCF, extremely weak shots will not contribute in calculating the correlation coefficient since $ w_{t_1}$ approaches 0 as $\left<I_{t_1}\right>$ approaches 0. Doing so will also help eliminate false correlations resulting from correlations between two extremely disproportionate pulses resulting from intensity fluctuations from X-ray sources. Thus, this weighted TTCF function discard pairs of pulses that are extremely weak or extremely strong and weak, consequently reducing the number of contributing pulses, in computation of the correlation coefficients.
 \begin{align}\label{eqn:weightM}
 w_{t_1, t_2} = \frac{n_{pix} \left<I_{t_1}\right> \left<I_{t_2}\right>}{\left<I_{t_1}\right> + \left<I_{t_2}\right> + 1}
 \end{align}
+\subsubsection{SG smoothing: Dealing with low coherence beam}
 
-\section{Variance of a Gamma/Gamma/Poisson random variable}
+\subsubsection{Low count rate XPCS: Dealing with steady source}
+
+\subsubsection{XPCS correlations through alternative means}
+\section{Contrast and correlation coefficient: how they are related}
+As we will be focusing mainly on wide-angle scattering and choosing a region of interest (ROI) where there is no dependence on the scattering vector \QQ, the following equations will be written without the \QQ~ dependence. 
+\begin{align}
+g_1(t_1, t_2) &= \frac{\left< E^*_{t_1} E_{t_2} \right>}{\left< E^*_{t_1} E_{t_1} \right>} \\
+g_2(t_1, t_2) &= 1 + |g_1(t_1, t_2)|^2 \label{eqn:g2_field} \\
+&= 1 + \beta_0 |g_1(t_1, t_2)|^2 \label{eqn:g2_siegert}\\
+&= \frac{\overline{\left< I_{t_1} I_{t_2} \right>}}{\overline{\left< I_{t_1} \right>} \overline{\left< I_{t_2} \right>}} \label{eqn:g2_intensity} 
+\end{align}
+Intensity fluctuations in speckle patterns arise from the microscopic spatial rearrangement of particles within the scattering volume. These fluctuations can be characterized through the temporal intensity autocorrelation function, \( g_2(t_1, t_2) \), which quantifies the temporal correlations between speckle patterns at different times. The Siegert relation, Eq. \eqref{eqn:g2_siegert}, \eqref{eqn:g2_field} \cite{ferreira2020, jo_single_2023}, links the intensity autocorrelation, \( g_2(t_1, t_2) \), to the temporal field correlation function, i.e., intensity correlation of the electric field of the scattered light, and relates the contrast parameter, \(\beta_0\), and \( g_2 \). 
+
+The contrast parameter \(\beta_0\) is extracted from the statistical analysis of photons detected within a single speckle pattern. It describes the degree of speckle contrast, capturing instantaneous variation in intensity occurring within a single frame due to interference effects. On the other hand, the correlation coefficient \( g_2(\Delta t) \) measures the degree of similarity between intensities in different frames, thereby probing the dynamics of the system over time.
+
+The Siegert relation directly connects these two quantities. At \(\Delta t = 0\), the system has not evolved between the frames, and thus the contrast in the speckle pattern corresponds to the intrinsic speckle contrast, \(\beta_0\): \(g_2(\Delta t = 0) - 1 = \beta_0\). 
+When the speckle patterns are separated by a time delay, \(\Delta t\), \(g_2\) reflects the temporal evolution of the system. For instance, summing two speckle patterns separated by a frame and computing their contrast yields the autocorrelation at \(\Delta t = 1\): \(g_2(\Delta t = 1) - 1 = \beta_0 |g_1(\Delta t = 1)|^2\)
+%This shows how \(\beta_0\) acts as the baseline contrast, while \( g_2 \) evolves as a function of time, providing insights into the dynamic rearrangements of particles. \beta_0 |f(Q, 0)|^2\) where \( f(Q, \Delta t) \) is the intermediate scattering function, describing the dynamics of the system.
+\subsection{G1 and ISF}
+
+\section{Ways to improve the current approaches}
+
+\section{Unified model of contrast to account for source fluctuations, speckle and counting statistics}
 This section describes the underlying statistical model used to simulate an X-ray scattering experiment at a X-ray free electron laser (XFEL) source. 
 
 A random variable (RV) is a function that maps from a set of all possible outcomes from a sample space to real-valued outcomes. Vectors in \(\mathbb{R}^n\) can be seen as functions defined on the set \(\{1, 2, \ldots, n\}\) mapping to real values. Specifically, a vector \(\mathbf{v} = [1, 2, 3]\) defines a function \(X\) such that \(X(i) = v_i\) for \(i \in \{1, 2, 3\}\). Here, \(\mathbf{v} = [v_1, v_2, v_3]\) and \(X: \{1, 2, 3\} \rightarrow \mathbb{R}\), where each index \(i\) maps to the corresponding vector component \(v_i\).
@@ -306,7 +336,9 @@ In summary, this statistical model based on the three-stage compound process cap
 
 More specifically, Eq. \eqref{MomEst_L} estimates the contrast of the underlying system where the reciprocal of \(\widehat{L}\) represents the system's contrast, which is the intercept of the correlation coefficient function at \(\Delta t = 0\). This approach overcomes the need to detect two-photon events and to bin data based on incident beam intensity to account for the beam intensity fluctuations, because the analysis take into account of all pixels and how they evolve over time. Consequently, it allows for every shot to contribute towards the contrast estimate easily, enabling the extraction of contrast even with extremely low mean photon count rates, further lowering the detection limit. So far in theory :')
 
-\section{Correlation Coefficients in XPCS}
+\section{Building XPCS from a purely statistical foundation}
+include how XPCS is derived from thermodynamics standpoint and justify the R approach, explain eq 21. 
+\subsection{Revisiting correlation coefficients in XPCS}
 %\subsection{\textbf{What is ptychography}}
 
 Let \(I(t)\) be the intensity recorded in a given pixel at time $t$. We can compute the correlation of \(I(t)\) with $I(t+\tau)$ after some time delay \(\tau\) the following way %if \(I(t)\) is staionary:
@@ -348,7 +380,7 @@ R^{(2)}_{X,Y}  = \frac{\langle XY\rangle}{\langle X\rangle\langle Y\rangle} = \l
 As we explain below, $R^{(1)}$ or $R^{(2)}$ are not the usual correlation coefficient as defined in applied statistics.  
 }
 
-\section{Correlation Coefficients in Statistics}
+\subsection{Correlation Coefficients in Statistics}
 %
 %For notational simplicity, let $I(t) \equiv X$ and $I(t+\tau) \equiv Y$. Then 
 %
@@ -402,7 +434,7 @@ Clearly, Eq.~\ref{eqn:Rxy1} is an alternative way to construct an element of 2D 
 %
 For uncorrelated random variables $(X,Y)$, $\text{Cov}(X,Y) = 0$, hence,  $R_{XY}$ = 0 and the maximum correlation value you can obtain is 1 in this construction, different than as in time-averaging of TTCF to obtain \(g_2\). 
 }
-\section{Relationship between the two correlation coefficients}
+\subsection{Relationship between the two correlation coefficients}
 So how is the correlation coefficient used in XPCS analysis,  $R^{(2)}_{XY}$ \eqref{eqn:R2},  related to the statistical correlation coefficient, $R_{XY} \eqref{eqn:Rxy2}$?
 
 First, let us establish the following relations between the standard deviation $\sigma_X$ and its mean \(\left <X \right>\) for a given probability distribution function (PDF). PDF of pure speckle follows negative exponential, so its mean = standard deviation. Pure speckle, \(R_{XY}^\text{SPE}\), implies an element of the traditional 2D correlation TTCF matrix in XPCS analysis. 
@@ -492,3 +524,10 @@ R^{(2)}_{t, t+\tau} &:= \frac{\left< I(t) I(t+\tau) \right> }{\left<I(t)\right> 
 A random variable (r.v.) is a function that maps from a set of all possible outcomes from a sample space to real-valued outcomes. Vectors in \(\mathbb{R}^n\) can be seen as random variables on the probability space \(\{1, 2, \ldots, n\}\). That is, r.v. are functions defined on the set \(\{1, 2, \ldots, n\}\) mapping to real values. Specifically, \(\mathbf{v} = [1, 2, 3]\) defines a function \(X\) such that \(X(i) = v_i\) for \(i \in \{1, 2, 3\}\). Here, \(\mathbf{v} = [v_1, v_2, v_3]\) and \(X: \{1, 2, 3\} \rightarrow \mathbb{R}\), where each index \(i\) maps to the corresponding vector component \(v_i\).
 
 a vector in \(mathbb{R}^n\) as a function that takes the sequential number of an element of the probability space as input, and gives a real number as output. This matches the definition of a real random variable over that probability space, which is a function that maps each element of the probability space to a real number
+
+
+Intensity fluctuations in time caused by the spatial rearrangement of particles are traced by the intensity autocorrelation function together with the Siegert relation Eq. \eqref{eqn:g22} \cite{ferreira2020, jo_single_2023}. Since contrast parameter, $\beta$ is obtained via photon statistical analysis within a speckle pattern, it captures the changes that occurs within the data collection period of one frame. On the other hand, $g_2$ computes the degree of similarities between different frames, it captures the dynamical evolution of the system between different frames. Thus, as a consequence of this Siegert relation, $\beta_0$ is speckle contrast when $\Delta t = 0$, so $g_2(\Delta t =0) - 1 = \beta_0 |f(Q, 0)|^2$, where $f(Q,\Delta t)$ is the intermediate scattering function. This implies that, if we sum every two speckle patterns separated by one frame as one speckle pattern and compute its corresponding contrast, that would corresponds to $g_2(\Delta t =1) - 1 = \beta_0 |f(Q, 1)|^2$
+\begin{align}
+\label{eqn:g22}
+g_2(Q, t_1, t_2) &= \frac{\overline{\left<{I}_{t_1} {I}_{t_2}\right>}}{\overline{\left<{I}_{t_1}\right>} \overline{\left<{I}_{t_2}\right>}} = 1 + \beta_0 |f(Q, \Delta t)|^2
+\end{align}
